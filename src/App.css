@@ -7,3 +7,28 @@ body,
 #root {
   @apply h-full;
 }
+
+.primary-gradient {
+  @apply bg-gradient-to-b from-primary-800 via-primary-700 to-primary-400;
+}
+
+div:has(#Chromatico-logo) > #Chromatico-logo {
+  scale: 1.5;
+  translate: 0 10px;
+}
+
+div:has(#Chromatico-logo):hover > #Chromatico-logo {
+  rotate: -45deg;
+  transform-origin: 15px center;
+  transition: all 1s ease-in-out;
+  scale: 1;
+  translate: 0;
+}
+div:has(#Chromatico-logo):hover > p {
+  @apply opacity-100;
+  transition: all 1s ease-in-out;
+}
+/* 
+* {
+  outline: 1px solid limegreen;
+} */
