@@ -1,13 +1,15 @@
 import Palette from "./Palette"
 
-function ColorPalette() {
+interface Props {
+  colors: string[]
+}
+
+function ColorPalette({ colors }: Props) {
   return (
     <section className="flex flex-col lg:flex-row gap-4 mx-8">
-      <Palette />
-      <Palette />
-      <Palette />
-      <Palette />
-      <Palette />
+      {colors.map((color, index) => (
+        <Palette color={color} key={index} />
+      ))}
     </section>
   )
 }
