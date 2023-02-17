@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import Palette from "./Palette"
 
 interface Props {
@@ -6,9 +7,16 @@ interface Props {
 
 function ColorPalette({ colors }: Props) {
   return (
-    <section className="flex flex-col lg:flex-row gap-4 mx-8">
+    <section className="flex gap-4 mx-8">
       {colors.map((color, index) => (
-        <Palette color={color} key={index} />
+        <motion.div
+          className="w-full"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: index / 10 }}
+        >
+          <Palette color={color} key={index} />
+        </motion.div>
       ))}
     </section>
   )

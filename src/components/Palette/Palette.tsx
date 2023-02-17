@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { copyToClipboard } from "../../lib/clipboard"
 import Notification from "../UIComponents/Modals/Notification"
+import { copyToClipboard } from "../../lib/clipboard"
 
 interface Props {
   color: string
@@ -18,9 +18,9 @@ function Palette({ color }: Props) {
   }
 
   return (
-    <div className="flex flex-col lg:basis-1/5 bg-white rounded-lg">
+    <div className="flex flex-col lg:basis-1/5 bg-white rounded-lg shadow-lg shadow-gray-400 hover:scale-[1.01] hover:shadow-gray-500 transition-all">
       <div
-        className="color w-full h-24 lg:h-96 cursor-pointer"
+        className="color w-full h-24 lg:h-96 cursor-pointer rounded-t-lg"
         style={{ backgroundColor: color }}
         onClick={onClick}
       ></div>

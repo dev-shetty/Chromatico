@@ -28,6 +28,7 @@ div:has(#Chromatico-logo):hover > p {
   @apply opacity-100;
   transition: all 1s ease-in-out;
 }
+
 /* 
 * {
   outline: 1px solid limegreen;
