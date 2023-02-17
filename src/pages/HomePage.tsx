@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
+import Notification from "../components/UIComponents/Modals/Notification"
 import { randomNumber, convertToHex } from "../lib/math"
 
 function HomePage() {
@@ -10,12 +11,16 @@ function HomePage() {
     let n = 5
     const randomColor: string[] = []
     for (let i = 0; i < n; i++) {
-      const color = `#${convertToHex(randomNumber(255))}${convertToHex(
-        randomNumber(255)
-      )}${convertToHex(randomNumber(255))}`
+      const color = `#${convertToHex(randomNumber(256))}${convertToHex(
+        randomNumber(256)
+      )}${convertToHex(randomNumber(256))}`
       randomColor.push(color)
     }
     setRandomColors(randomColor)
+  }
+
+  for (let i = 0; i < 100; i++) {
+    console.log(randomNumber(2))
   }
 
   useEffect(() => {
