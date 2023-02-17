@@ -1,18 +1,15 @@
 import { motion } from "framer-motion"
 import { useEffect } from "react"
 import { AiOutlineClose } from "react-icons/ai"
+import { KeyboardEvent } from "../../../lib/types"
 
 interface Props {
   text: string
   setNotification: (isNotification: boolean) => void
 }
 
-type Event = {
-  key: string
-}
-
 function Notification({ text, setNotification }: Props) {
-  function onEscape(event: Event) {
+  function onEscape(event: KeyboardEvent) {
     if (event.key === "Escape") {
       setNotification(false)
     }
