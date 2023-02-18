@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
+import { colorsContext } from "../context/ColorsProvider"
 import { randomNumber, convertToHex } from "../lib/math"
 import { KeyboardEvent } from "../lib/types"
 
 function HomePage() {
-  const [randomColors, setRandomColors] = useState<string[]>([])
+  const { setColors } = useContext(colorsContext)
 
   function generateRandomColors() {
     let n = 5
@@ -16,7 +17,10 @@ function HomePage() {
       )}${convertToHex(randomNumber(256))}`
       randomColor.push(color)
     }
-    setRandomColors(randomColor)
+    // * "?." makes sure that the function is not undefined
+    // * "Cannot invoke an object which is possibly 'undefined'." <- this bug
+
+    if (randomColor) setColors?.(randomColor)
   }
 
   function onSpaceBar(event: KeyboardEvent) {
@@ -28,17 +32,17 @@ function HomePage() {
   useEffect(() => {
     generateRandomColors()
 
-    document.addEventListener("keydown", onSpaceBar)
+    document.addEventListener("keyup", onSpaceBar)
 
     return () => {
-      document.removeEventListener("keydown", onSpaceBar)
+      document.removeEventListener("keyup", onSpaceBar)
     }
   }, [])
 
   return (
     <div className="w-full pt-16">
       <main className="flex flex-col">
-        <ColorPalette colors={randomColors} />
+        <ColorPalette />
         <div className="my-8 flex justify-center self-center w-full">
           <PrimaryBtn
             text="Generate Palette &nbsp; [Spacebar]"
