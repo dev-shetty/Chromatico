@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Notification from "../UIComponents/Modals/Notification"
 import { copyToClipboard } from "../../lib/clipboard"
+import { colorsContext } from "../../context/ColorsProvider"
 
 interface Props {
   color: string
@@ -8,9 +9,12 @@ interface Props {
 
 function Palette({ color }: Props) {
   const [notification, setNotification] = useState(false)
+
+  const { setCopiedColor } = useContext(colorsContext)
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(color)
+    setCopiedColor?.(color)
     setNotification(true)
     setTimeout(() => {
       setNotification(false)

@@ -1,6 +1,6 @@
 type Props = {
   text: string
-  onClick: any
+  onClick: () => void
 }
 
 function PrimaryBtn({ text, onClick }: Props) {

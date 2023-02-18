@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
+import { TbClipboardText } from "react-icons/all"
 import Chromatico from "../../../assets/Chromatico"
 
 function Navbar() {
   return (
-    <nav className="flex justify-center bg-primary-100 py-2 px-4">
+    <nav className="flex justify-center items-center bg-primary-100 py-2 px-4">
       <Link to="/">
         <div className="flex flex-col items-center cursor-pointer">
           <Chromatico size={50} />
@@ -11,7 +12,11 @@ function Navbar() {
           <p className="opacity-0 -ml-1">Chromatico</p>
         </div>
       </Link>
-      <ul></ul>
+      <ul className="ml-auto">
+        <Link to="/clipboard">
+          <TbClipboardText className="scale-150 mr-4 cursor-pointer hover:scale-[1.75]" />
+        </Link>
+      </ul>
     </nav>
   )
 }
