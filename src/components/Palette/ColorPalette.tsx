@@ -6,7 +6,7 @@ import Palette from "./Palette"
 function ColorPalette() {
   const { colors } = useContext(colorsContext)
   return (
-    <section className="flex gap-4 mx-8">
+    <section className="flex flex-col lg:flex-row gap-4 mx-8">
       {colors &&
         colors.map((color, index) => (
           <motion.div
@@ -14,6 +14,7 @@ function ColorPalette() {
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: index / 10 }}
+            key={index}
           >
             <Palette color={color} key={index} />
           </motion.div>
