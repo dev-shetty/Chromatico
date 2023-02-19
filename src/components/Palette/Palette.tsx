@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import Notification from "../UIComponents/Modals/Notification"
 import { copyToClipboard } from "../../lib/clipboard"
 import { colorsContext } from "../../context/ColorsProvider"
+import { clipboardContext } from "../../context/ClipboardProvider"
 
 interface Props {
   color: string
@@ -9,12 +10,14 @@ interface Props {
 
 function Palette({ color }: Props) {
   const [notification, setNotification] = useState(false)
+  const { clipboard } = useContext(clipboardContext)
 
   const { setCopiedColor } = useContext(colorsContext)
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(color)
     setCopiedColor?.(color)
+    clipboard?.push(color)
     setNotification(true)
     setTimeout(() => {
       setNotification(false)
