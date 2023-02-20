@@ -3,6 +3,7 @@ import Notification from "../UIComponents/Modals/Notification"
 import { copyToClipboard } from "../../lib/clipboard"
 import { colorsContext } from "../../context/ColorsProvider"
 import { clipboardContext } from "../../context/ClipboardProvider"
+import { convertHexToRGB, convertHexToHSL } from "../../lib/math"
 
 interface Props {
   color: string
@@ -10,23 +11,19 @@ interface Props {
 
 function Palette({ color }: Props) {
   const { clipboard } = useContext(clipboardContext)
-  const { setCopiedColor } = useContext(colorsContext)
 
   const [notification, setNotification] = useState(false)
-
-  function saveToClipboard() {
-    const colorAlreadyPresent = clipboard?.find(
-      (existingColor) => existingColor === color
-    )
-    if (!colorAlreadyPresent) clipboard?.push(color)
-  }
+  const [colorCode, setColorCode] = useState(color) // this is in hexCode
 
   function onClick() {
     const NOTIFICATION_TIMER = 3000
-    copyToClipboard(color)
-    setCopiedColor?.(color)
+    copyToClipboard(colorCode)
 
-    saveToClipboard()
+    // To check whether the color is repeated if not then push
+    const isColorAlreadyPresent = clipboard?.find(
+      (existingColor) => existingColor === color
+    )
+    if (!isColorAlreadyPresent) clipboard?.push(color)
 
     setNotification(true)
     setTimeout(() => {
@@ -34,11 +31,23 @@ function Palette({ color }: Props) {
     }, NOTIFICATION_TIMER)
   }
 
+  function changeFormat() {
+    if (colorCode.startsWith("#")) {
+      const [red, green, blue] = convertHexToRGB(color)
+      setColorCode(`rgb(${red}, ${green}, ${blue})`)
+    } else if (colorCode.startsWith("rgb")) {
+      const [hue, saturation, luminosity] = convertHexToHSL(color)
+      setColorCode(`hsl(${hue}, ${saturation}%, ${luminosity}%)`)
+    } else {
+      setColorCode(color)
+    }
+  }
+
   return (
     <>
       {notification && (
         <Notification
-          text={`${color} has been copied to clipboard`}
+          text={`${colorCode} has been copied to clipboard`}
           setNotification={setNotification}
         />
       )}
@@ -48,8 +57,11 @@ function Palette({ color }: Props) {
           style={{ backgroundColor: color }}
           onClick={onClick}
         ></div>
-        <div className="color-code flex justify-center border-t-2 py-2 bg-slate-50 rounded-b-lg cursor-pointer">
-          {color}
+        <div
+          className="color-code flex justify-center border-t-2 py-2 bg-slate-50 rounded-b-lg cursor-pointer"
+          onClick={changeFormat}
+        >
+          {colorCode}
         </div>
       </div>
     </>

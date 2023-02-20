@@ -12,12 +12,9 @@ export const colorsContext = React.createContext<Partial<colorsProps>>({})
 
 function colorsProvider({ children }: ChildrenProp) {
   const [colors, setColors] = useState<string[]>([])
-  const [copiedColor, setCopiedColor] = useState<string>()
 
   return (
-    <colorsContext.Provider
-      value={{ colors, setColors, copiedColor, setCopiedColor }}
-    >
+    <colorsContext.Provider value={{ colors, setColors }}>
       {children}
     </colorsContext.Provider>
   )
