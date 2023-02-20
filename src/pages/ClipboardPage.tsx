@@ -11,6 +11,14 @@ function ClipboardPage() {
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
 
+  useEffect(() => {
+    const storagePrefix = "chromatico"
+    localStorage.setItem(
+      storagePrefix + "-clipboard",
+      JSON.stringify(clipboard)
+    )
+  }, [clipboard])
+
   function onClick(color: string) {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(color)

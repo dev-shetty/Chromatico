@@ -1,7 +1,6 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Notification from "../UIComponents/Modals/Notification"
 import { copyToClipboard } from "../../lib/clipboard"
-import { colorsContext } from "../../context/ColorsProvider"
 import { clipboardContext } from "../../context/ClipboardProvider"
 import { convertHexToRGB, convertHexToHSL } from "../../lib/math"
 

@@ -6,10 +6,14 @@ type clipboardProps = {
   setClipboard: Dispatch<SetStateAction<string[]>>
 }
 
+const initialClipboard = localStorage.getItem("chromatico-clipboard")
+
 export const clipboardContext = React.createContext<Partial<clipboardProps>>({})
 
 function ClipboardProvider({ children }: ChildrenProp) {
-  const [clipboard, setClipboard] = useState<string[]>([])
+  const [clipboard, setClipboard] = useState<string[]>(
+    JSON.parse(initialClipboard!)
+  )
   return (
     <clipboardContext.Provider value={{ clipboard, setClipboard }}>
       {children}
