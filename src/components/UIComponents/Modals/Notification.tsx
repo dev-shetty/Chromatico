@@ -1,7 +1,6 @@
 import { motion } from "framer-motion"
 import { useEffect } from "react"
 import { AiOutlineClose } from "react-icons/ai"
-import { BsClipboardCheck } from "react-icons/bs"
 import { KeyboardEvent } from "../../../lib/types"
 
 interface Props {
@@ -30,7 +29,6 @@ function Notification({ text, setNotification }: Props) {
       animate={{ opacity: 1, y: 0 }}
     >
       <div className="flex items-center gap-1">
-        <BsClipboardCheck />
         <p>{text}</p>
       </div>
       <AiOutlineClose

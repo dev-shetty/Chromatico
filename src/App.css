@@ -29,7 +29,6 @@ div:has(#Chromatico-logo):hover > p {
   transition: all 1s ease-in-out;
 }
 
-/* 
-* {
-  outline: 1px solid limegreen;
-} */
+/* * {
+    outline: 1px solid limegreen;
+  } */
