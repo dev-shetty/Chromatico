@@ -9,15 +9,25 @@ interface Props {
 }
 
 function Palette({ color }: Props) {
-  const [notification, setNotification] = useState(false)
   const { clipboard } = useContext(clipboardContext)
-
   const { setCopiedColor } = useContext(colorsContext)
+
+  const [notification, setNotification] = useState(false)
+
+  function saveToClipboard() {
+    const colorAlreadyPresent = clipboard?.find(
+      (existingColor) => existingColor === color
+    )
+    if (!colorAlreadyPresent) clipboard?.push(color)
+  }
+
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(color)
     setCopiedColor?.(color)
-    clipboard?.push(color)
+
+    saveToClipboard()
+
     setNotification(true)
     setTimeout(() => {
       setNotification(false)

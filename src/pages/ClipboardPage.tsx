@@ -5,6 +5,7 @@ import { copyToClipboard } from "../lib/clipboard"
 
 function ClipboardPage() {
   const { clipboard } = useContext(clipboardContext)
+
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
 
@@ -18,7 +19,6 @@ function ClipboardPage() {
       setNotification(false)
     }, NOTIFICATION_TIMER)
   }
-  console.log(clipboard)
   return (
     <section className="p-4">
       {notification && (

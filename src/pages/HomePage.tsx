@@ -31,9 +31,7 @@ function HomePage() {
 
   useEffect(() => {
     generateRandomColors()
-
     document.addEventListener("keyup", onSpaceBar)
-
     return () => {
       document.removeEventListener("keyup", onSpaceBar)
     }
