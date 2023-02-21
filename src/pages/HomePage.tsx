@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
+import Notification from "../components/UIComponents/Modals/Notification"
 import { clipboardContext } from "../context/ClipboardProvider"
 import { colorsContext } from "../context/ColorsProvider"
 import { randomNumber, convertToHex } from "../lib/math"
@@ -9,6 +10,8 @@ import { KeyboardEvent } from "../lib/types"
 function HomePage() {
   const { colors, setColors } = useContext(colorsContext)
   const { clipboard } = useContext(clipboardContext)
+
+  const [notification, setNotification] = useState(false)
 
   function generateRandomColors() {
     let n = 5
@@ -32,11 +35,17 @@ function HomePage() {
   }
 
   function copyPallete() {
+    const NOTIFICATION_TIMER = 3000
+
     colors?.map((color) => {
       const isColorAlreadyPresent = clipboard?.find(
         (existingColor) => existingColor === color
       )
       if (!isColorAlreadyPresent) clipboard?.push(color)
+      setNotification(true)
+      setTimeout(() => {
+        setNotification(false)
+      }, NOTIFICATION_TIMER)
     })
   }
 
@@ -60,6 +69,12 @@ function HomePage() {
           <PrimaryBtn text="Copy Pallete" onClick={copyPallete} />
         </div>
       </main>
+      {notification && (
+        <Notification
+          text="Color Palette has been copied to clipboard"
+          setNotification={setNotification}
+        />
+      )}
     </div>
   )
 }
