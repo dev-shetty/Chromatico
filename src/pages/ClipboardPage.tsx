@@ -64,7 +64,7 @@ function ClipboardPage() {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8">
+      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8">
         <button
           className="bg-red-500 p-4 text-primary-100 rounded-full hover:text-red-500 hover:bg-primary-100 transition-colors"
           title="Clear Clipboard"

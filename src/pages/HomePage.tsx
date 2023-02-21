@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
+import { clipboardContext } from "../context/ClipboardProvider"
 import { colorsContext } from "../context/ColorsProvider"
 import { randomNumber, convertToHex } from "../lib/math"
 import { KeyboardEvent } from "../lib/types"
 
 function HomePage() {
-  const { setColors } = useContext(colorsContext)
+  const { colors, setColors } = useContext(colorsContext)
+  const { clipboard } = useContext(clipboardContext)
 
   function generateRandomColors() {
     let n = 5
@@ -29,6 +31,15 @@ function HomePage() {
     }
   }
 
+  function copyPallete() {
+    colors?.map((color) => {
+      const isColorAlreadyPresent = clipboard?.find(
+        (existingColor) => existingColor === color
+      )
+      if (!isColorAlreadyPresent) clipboard?.push(color)
+    })
+  }
+
   useEffect(() => {
     generateRandomColors()
     document.addEventListener("keyup", onSpaceBar)
@@ -41,11 +52,12 @@ function HomePage() {
     <div className="w-full pt-16">
       <main className="flex flex-col">
         <ColorPalette />
-        <div className="my-8 flex justify-center self-center w-full">
+        <div className="my-8 flex flex-col items-center gap-4 justify-center self-center w-full">
           <PrimaryBtn
             text="Generate Palette &nbsp; [Spacebar]"
             onClick={generateRandomColors}
           />
+          <PrimaryBtn text="Copy Pallete" onClick={copyPallete} />
         </div>
       </main>
     </div>
