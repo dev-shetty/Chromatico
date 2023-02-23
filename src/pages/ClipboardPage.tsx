@@ -19,7 +19,8 @@ function ClipboardPage() {
       storagePrefix + "-clipboard",
       JSON.stringify(clipboard)
     )
-  }, [clipboard])
+    localStorage.setItem(storagePrefix + "-palette", JSON.stringify(palette))
+  }, [clipboard, palette])
 
   function onClick(color: string) {
     const NOTIFICATION_TIMER = 3000
@@ -46,37 +47,41 @@ function ClipboardPage() {
       <h2 className="text-center font-bold text-4xl text-primary-100">
         Clipboard History
       </h2>
-      <div className="grid lg:grid-cols-[40%_60%] m-2 p-2 my-8 gap-4">
+      <div className="grid xl:grid-cols-2 m-2 p-2 my-8 gap-4">
         <div className="flex flex-col gap-4">
           <p className="text-center font-bold text-3xl text-primary-100">
             Pallete
           </p>
           <div className="flex flex-col items-center gap-2 mx-auto">
-            <div className="flex">
-              {/* {clipboard?.map((color, index) => (
+            <div className="flex flex-col gap-4">
+              {palette?.map((paletteItem, index) => (
                 <motion.div
-                  key={index}
+                  className="flex flex-col items-center gap-2"
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -100, opacity: 0 }}
-                  className="flex flex-col items-center"
                 >
-                  <div
-                    className="h-24 aspect-square cursor-pointer"
-                    onClick={() => onClick(color)}
-                    style={{ backgroundColor: color }}
-                  ></div>
+                  <div key={index} className="flex items-center">
+                    {paletteItem.colors.map((color, index) => (
+                      <div
+                        className="h-12 md:h-24 aspect-square cursor-pointer gap-2"
+                        key={index}
+                        onClick={() => onClick(color)}
+                        style={{ backgroundColor: color }}
+                      ></div>
+                    ))}
+                  </div>
+                  <p>{paletteItem.name}</p>
                 </motion.div>
-              ))} */}
+              ))}
             </div>
-            <p>Pallete Name</p>
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <p className="text-center font-bold text-3xl text-primary-100">
             Colors
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+          <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
             {clipboard?.map((color, index) => (
               <motion.div
                 key={index}
@@ -86,7 +91,7 @@ function ClipboardPage() {
                 className="flex flex-col items-center gap-2"
               >
                 <div
-                  className="h-36 aspect-square cursor-pointer rounded-lg"
+                  className="h-16 md:h-36 aspect-square cursor-pointer rounded-lg"
                   onClick={() => onClick(color)}
                   style={{ backgroundColor: color }}
                 ></div>
