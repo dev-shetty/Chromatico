@@ -6,10 +6,12 @@ import { clipboardContext } from "../context/ClipboardProvider"
 import { copyToClipboard } from "../lib/clipboard"
 
 function ClipboardPage() {
-  const { clipboard, setClipboard } = useContext(clipboardContext)
+  const { palette, clipboard, setClipboard } = useContext(clipboardContext)
 
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
+
+  console.log(palette)
 
   useEffect(() => {
     const storagePrefix = "chromatico"
@@ -51,7 +53,7 @@ function ClipboardPage() {
           </p>
           <div className="flex flex-col items-center gap-2 mx-auto">
             <div className="flex">
-              {clipboard?.map((color, index) => (
+              {/* {clipboard?.map((color, index) => (
                 <motion.div
                   key={index}
                   initial={{ y: 100, opacity: 0 }}
@@ -65,7 +67,7 @@ function ClipboardPage() {
                     style={{ backgroundColor: color }}
                   ></div>
                 </motion.div>
-              ))}
+              ))} */}
             </div>
             <p>Pallete Name</p>
           </div>

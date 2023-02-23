@@ -9,7 +9,7 @@ import { KeyboardEvent } from "../lib/types"
 
 function HomePage() {
   const { colors, setColors } = useContext(colorsContext)
-  const { clipboard } = useContext(clipboardContext)
+  const { palette, setPalette } = useContext(clipboardContext)
 
   const [notification, setNotification] = useState(false)
 
@@ -36,17 +36,16 @@ function HomePage() {
 
   function copyPallete() {
     const NOTIFICATION_TIMER = 3000
-
-    colors?.map((color) => {
-      const isColorAlreadyPresent = clipboard?.find(
-        (existingColor) => existingColor === color
-      )
-      if (!isColorAlreadyPresent) clipboard?.push(color)
-      setNotification(true)
-      setTimeout(() => {
-        setNotification(false)
-      }, NOTIFICATION_TIMER)
+    if (palette![0].name === "") palette?.pop()
+    palette?.push({
+      colors: colors!,
+      name: "My Palette",
     })
+    setNotification(true)
+
+    setTimeout(() => {
+      setNotification(false)
+    }, NOTIFICATION_TIMER)
   }
 
   useEffect(() => {
