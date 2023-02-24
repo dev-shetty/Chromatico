@@ -42,6 +42,10 @@ function Palette({ color }: Props) {
     }
   }
 
+  useEffect(() => {
+    setColorCode(color)
+  }, [color])
+
   return (
     <>
       {notification && (
