@@ -1,8 +1,8 @@
-import { NavigationType } from "../../lib/types"
+import { NavigationOption } from "../../lib/types"
 
 type Props = {
-  active: NavigationType
-  setActive: React.Dispatch<React.SetStateAction<NavigationType>>
+  active: NavigationOption
+  setActive: React.Dispatch<React.SetStateAction<NavigationOption>>
 }
 
 function ToggleNav({ active, setActive }: Props) {

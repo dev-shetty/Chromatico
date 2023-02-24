@@ -6,4 +6,9 @@ export type ChildrenProp = {
   children: JSX.Element
 }
 
-export type NavigationType = 1 | 2
+enum Navigation {
+  Palettes = 1,
+  Clipboard = 2,
+}
+
+export type NavigationOption = Navigation

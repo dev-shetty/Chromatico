@@ -5,7 +5,7 @@ import Notification from "../components/UIComponents/Modals/Notification"
 import ToggleNav from "../components/Clipboard/ToggleNav"
 import { clipboardContext } from "../context/ClipboardProvider"
 import { copyToClipboard } from "../lib/clipboard"
-import { NavigationType } from "../lib/types"
+import { NavigationOption } from "../lib/types"
 
 function ClipboardPage() {
   const { palette, clipboard, setClipboard, setPalette } =
@@ -13,7 +13,7 @@ function ClipboardPage() {
 
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
-  const [activeToggle, setActiveToggle] = useState<NavigationType>(2)
+  const [activeToggle, setActiveToggle] = useState<NavigationOption>(2)
 
   useEffect(() => {
     const storagePrefix = "chromatico"

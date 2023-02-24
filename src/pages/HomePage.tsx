@@ -80,7 +80,8 @@ function HomePage() {
           />
           <AiOutlineHeart
             onClick={() => setModal(true)}
-            className="scale-150 cursor-pointer hover:text-red-500"
+            title="Save the Palette"
+            className="heart scale-150 cursor-pointer hover:text-red-500"
           />
         </div>
       </main>
@@ -109,7 +110,7 @@ function HomePage() {
                   type="submit"
                   className="border-2 px-4 py-2 bg-primary-600 hover:bg-primary-400 rounded-lg"
                 >
-                  Copy Palette
+                  Save
                 </button>
               </div>
             </form>
