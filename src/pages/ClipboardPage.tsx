@@ -2,14 +2,18 @@ import { useContext, useEffect, useState } from "react"
 import { FiTrash2 } from "react-icons/fi"
 import { motion } from "framer-motion"
 import Notification from "../components/UIComponents/Modals/Notification"
+import ToggleNav from "../components/Clipboard/ToggleNav"
 import { clipboardContext } from "../context/ClipboardProvider"
 import { copyToClipboard } from "../lib/clipboard"
+import { NavigationType } from "../lib/types"
 
 function ClipboardPage() {
-  const { palette, clipboard, setClipboard } = useContext(clipboardContext)
+  const { palette, clipboard, setClipboard, setPalette } =
+    useContext(clipboardContext)
 
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
+  const [activeToggle, setActiveToggle] = useState<NavigationType>(2)
 
   useEffect(() => {
     const storagePrefix = "chromatico"
@@ -32,10 +36,17 @@ function ClipboardPage() {
   }
 
   function clearClipboard() {
-    setClipboard?.([])
+    if (activeToggle === 2) setClipboard?.([])
+    else if (activeToggle === 1)
+      setPalette?.([
+        {
+          colors: [],
+          name: "",
+        },
+      ])
   }
   return (
-    <section className="p-4">
+    <section className="flex flex-col p-4">
       {notification && (
         <Notification
           text={`${copiedColor} has been copied to Clipboard`}
@@ -43,62 +54,59 @@ function ClipboardPage() {
         />
       )}
       <h2 className="text-center font-bold text-4xl text-primary-100">
-        Clipboard History
+        Dashboard
       </h2>
-      <div className="grid xl:grid-cols-2 m-2 p-2 my-8 gap-4">
-        <div className="flex flex-col gap-4">
-          <p className="text-center font-bold text-3xl text-primary-100">
-            Pallete
-          </p>
-          <div className="flex flex-col items-center gap-2 mx-auto">
-            <div className="flex flex-col gap-4">
-              {palette?.map((paletteItem, index) => (
-                <motion.div
-                  className="flex flex-col items-center gap-2"
-                  key={index}
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -100, opacity: 0 }}
-                >
-                  <div key={index} className="flex items-center">
-                    {paletteItem.colors.map((color, index) => (
-                      <div
-                        className="h-12 md:h-24 aspect-square cursor-pointer gap-2"
-                        key={index}
-                        onClick={() => onClick(color)}
-                        style={{ backgroundColor: color }}
-                      ></div>
-                    ))}
-                  </div>
-                  <p>{paletteItem.name}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-4">
-          <p className="text-center font-bold text-3xl text-primary-100">
-            Colors
-          </p>
-          <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
-            {clipboard?.map((color, index) => (
+      <div className="mx-auto my-4">
+        <ToggleNav active={activeToggle} setActive={setActiveToggle} />
+      </div>
+      <div className="grid m-2 p-2 gap-4">
+        {activeToggle === 1 && (
+          <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-2">
+            {palette?.map((paletteItem, index) => (
               <motion.div
+                className="flex flex-col items-center gap-2"
                 key={index}
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -100, opacity: 0 }}
-                className="flex flex-col items-center gap-2"
               >
-                <div
-                  className="h-16 md:h-36 aspect-square cursor-pointer rounded-lg"
-                  onClick={() => onClick(color)}
-                  style={{ backgroundColor: color }}
-                ></div>
-                <p>{color}</p>
+                <div key={index} className="flex items-center">
+                  {paletteItem.colors.map((color, index) => (
+                    <div
+                      className="h-14 sm:h-20 aspect-square cursor-pointer gap-2"
+                      key={index}
+                      onClick={() => onClick(color)}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                  ))}
+                </div>
+                <p>{paletteItem.name}</p>
               </motion.div>
             ))}
           </div>
-        </div>
+        )}
+        {activeToggle === 2 && (
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
+              {clipboard?.map((color, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -100, opacity: 0 }}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <div
+                    className="h-24 md:h-36 aspect-square cursor-pointer rounded-lg"
+                    onClick={() => onClick(color)}
+                    style={{ backgroundColor: color }}
+                  ></div>
+                  <p>{color}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8">
         <button

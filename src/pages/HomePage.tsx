@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react"
-import { AiOutlineClose } from "react-icons/ai"
+import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
 import Notification from "../components/UIComponents/Modals/Notification"
@@ -73,12 +73,15 @@ function HomePage() {
     <div className="w-full pt-16">
       <main className="flex flex-col">
         <ColorPalette />
-        <div className="my-8 flex flex-col items-center gap-4 justify-center self-center w-full">
+        <div className="my-8 flex items-center gap-4 justify-center self-center w-full">
           <PrimaryBtn
             text="Generate Palette &nbsp; [Spacebar]"
             onClick={generateRandomColors}
           />
-          <PrimaryBtn text="Copy Pallete" onClick={() => setModal(true)} />
+          <AiOutlineHeart
+            onClick={() => setModal(true)}
+            className="scale-150 cursor-pointer hover:text-red-500"
+          />
         </div>
       </main>
       {notification && (

@@ -6,6 +6,8 @@
 
 - [x] Add an option to add name to the palette
 
+- [ ] Add Heart icon to save instead of copy palette button
+
 - [ ] Add buttons to toggle between Palette and Colors Tab
 
 - [ ] Improve UI of the add Name Modal
