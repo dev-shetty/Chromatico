@@ -15,14 +15,17 @@ module.exports = {
 
         // Shades of Blue
         primary: {
-          100: "#edf2fb",
-          200: "#e2eafc",
-          400: "#d7e3fc",
-          500: "#ccdbfd",
-          600: "#c1d3fe",
-          700: "#b6ccfe",
-          800: "#abc4ff",
+          100: "#FFFFFF",
+          900: "#000000",
         },
+        accent: {
+          300: "#FFD35C",
+          500: "#FFBE0B",
+        },
+        secondary: "#FB5607",
+      },
+      fontFamily: {
+        chromatico: ["Cursive-Chromatico", "cursive"],
       },
     },
   },

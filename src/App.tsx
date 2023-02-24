@@ -6,7 +6,7 @@ import "./App.css"
 
 function App() {
   return (
-    <div className="min-h-full primary-gradient">
+    <div className="h-full primary-gradient">
       <Router>
         <Navbar />
         <Routes>

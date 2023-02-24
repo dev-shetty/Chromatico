@@ -1,8 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
-import { AiOutlineHome } from "react-icons/ai"
-import { TbClipboardText } from "react-icons/tb"
 import Chromatico from "../../../assets/Chromatico"
 import { useEffect, useState } from "react"
+import { FiArrowRight } from "react-icons/fi"
 
 function Navbar() {
   const location = useLocation()
@@ -17,27 +16,46 @@ function Navbar() {
     setRoute(location.pathname)
   }, [location])
   return (
-    <nav className="flex justify-center items-center bg-primary-100 py-2 px-8">
-      <Link to="/">
-        <div className="flex flex-col items-center cursor-pointer">
-          <Chromatico size={50} />
-          {/* <p className="primary-gradient text-clip text-transparent bg-clip-text"> */}
-          <p className="opacity-0 -ml-1">Chromatico</p>
-        </div>
-      </Link>
-      <div className="ml-auto">
-        <Link
-          to={route === "/clipboard" ? "/" : "/clipboard"}
-          onClick={changeRoute}
-        >
-          {route === "/" ? (
-            <TbClipboardText className="scale-150 cursor-pointer hover:scale-[1.75]" />
-          ) : (
-            <AiOutlineHome className="scale-150 cursor-pointer hover:scale-[1.75]" />
-          )}
+    <section className="grid grid-cols-2 md:grid-cols-[20%_80%] h-[10%]">
+      <div className="flex justify-center items-center gap-4 cursor-pointer">
+        <Link to="/">
+          {/* <Chromatico size="10%" /> */}
+          <p className="font-chromatico text-3xl text-accent-500 mt-2">
+            Chromatico
+          </p>
         </Link>
       </div>
-    </nav>
+      <nav>
+        <button>  </button>
+      </nav>
+      <nav className="hidden md:grid grid-rows-2">
+        <div className="primary-nav flex justify-center items-center bg-primary-100">
+          <div className="flex w-full justify-between ml-auto mr-8">
+            <div className="ml-4">
+              <p className="opacity-75">Spacebar to Generate</p>
+            </div>
+            <Link
+              to={route === "/clipboard" ? "/" : "/clipboard"}
+              onClick={changeRoute}
+            >
+              {route === "/" ? (
+                // <TbClipboardText className="scale-150 cursor-pointer hover:scale-[1.75]" />
+                <div className="flex items-center cursor-pointer gap-1 hover:text-accent-500">
+                  <p>Palettes</p>
+                  <FiArrowRight className="-mt-[0.1rem]" />
+                </div>
+              ) : (
+                // <AiOutlineHome className="scale-150 cursor-pointer hover:scale-[1.75]" />
+                <div className="flex items-center cursor-pointer gap-1 hover:text-accent-500">
+                  <p>Home</p>
+                </div>
+              )}
+            </Link>
+          </div>
+          <div className="secondary-nav"></div>
+        </div>
+      </nav>
+    </section>
   )
 }
 

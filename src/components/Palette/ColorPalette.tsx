@@ -6,11 +6,11 @@ import Palette from "./Palette"
 function ColorPalette() {
   const { colors } = useContext(colorsContext)
   return (
-    <section className="flex flex-col lg:flex-row gap-4 mx-8">
+    <section className="h-full flex flex-col lg:flex-row overflow-hidden">
       {colors &&
         colors.map((color, index) => (
           <motion.div
-            className="w-full"
+            className="h-full w-full"
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: index / 10 }}

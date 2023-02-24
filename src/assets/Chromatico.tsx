@@ -1,5 +1,5 @@
 type Props = {
-  size: number
+  size: number | string
 }
 
 function Chromatico({ size }: Props) {

@@ -70,10 +70,10 @@ function HomePage() {
   }, [modal])
 
   return (
-    <div className="w-full pt-16">
-      <main className="flex flex-col">
+    <div className="h-[90%] w-full">
+      <main className="h-full flex flex-col">
         <ColorPalette />
-        <div className="my-8 flex items-center gap-4 justify-center self-center w-full">
+        {/* <div className="my-8 flex items-center gap-4 justify-center self-center w-full">
           <PrimaryBtn
             text="Generate Palette &nbsp; [Spacebar]"
             onClick={generateRandomColors}
@@ -83,7 +83,7 @@ function HomePage() {
             title="Save the Palette"
             className="heart scale-150 cursor-pointer hover:text-red-500"
           />
-        </div>
+        </div> */}
       </main>
       {notification && (
         <Notification
@@ -92,8 +92,8 @@ function HomePage() {
         />
       )}
       {modal && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-gray-400">
-          <div className="relative py-12 px-16 bg-primary-100 rounded-lg">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  shadow-lg shadow-gray-400">
+          <div className="relative py-12 px-16 bg-primary-100 ">
             <form onSubmit={copyPallete}>
               <div className="flex flex-col items-center gap-8">
                 <div className="flex gap-4 items-center">
@@ -108,7 +108,7 @@ function HomePage() {
                 </div>
                 <button
                   type="submit"
-                  className="border-2 px-4 py-2 bg-primary-600 hover:bg-primary-400 rounded-lg"
+                  className="border-2 px-4 py-2 bg-primary-600 hover:bg-primary-400 "
                 >
                   Save
                 </button>

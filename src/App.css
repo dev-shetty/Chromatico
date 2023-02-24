@@ -9,7 +9,7 @@ body,
 }
 
 .primary-gradient {
-  @apply bg-gradient-to-b from-primary-800 via-primary-700 to-primary-400;
+  /* @apply bg-gradient-to-b from-primary-800 via-primary-700 to-primary-400; */
 }
 
 div:has(#Chromatico-logo) > #Chromatico-logo {
@@ -27,6 +27,11 @@ div:has(#Chromatico-logo):hover > #Chromatico-logo {
 div:has(#Chromatico-logo):hover > p {
   @apply opacity-100;
   transition: all 1s ease-in-out;
+}
+
+@font-face {
+  font-family: "Cursive-Chromatico";
+  src: url("/fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf");
 }
 
 /* * {

@@ -54,17 +54,18 @@ function Palette({ color }: Props) {
           setNotification={setNotification}
         />
       )}
-      <div className="flex flex-col lg:basis-1/5 bg-white rounded-lg shadow-lg shadow-gray-400 hover:scale-[1.01] hover:shadow-gray-500 transition-all">
+      <div className="relative h-full flex flex-col lg:basis-1/5 bg-white transition-all">
         <div
-          className="color w-full h-24 lg:h-96 cursor-pointer rounded-t-lg"
+          className="color w-full h-full lg:h-full cursor-pointer"
           style={{ backgroundColor: color }}
           onClick={onClick}
-        ></div>
-        <div
-          className="color-code flex justify-center border-t-2 py-2 bg-slate-50 rounded-b-lg cursor-pointer"
-          onClick={changeFormat}
         >
-          {colorCode}
+          <div
+            className="color-code right-8 bottom-1/2 translate-y-1/2 md:right-0 md:-translate-y-0 md:bottom-8 md:left-1/2 md:-translate-x-1/2 text-xl md:text-3xl absolute flex justify-center py-2 cursor-pointer md:w-full"
+            onClick={changeFormat}
+          >
+            {colorCode}
+          </div>
         </div>
       </div>
     </>
