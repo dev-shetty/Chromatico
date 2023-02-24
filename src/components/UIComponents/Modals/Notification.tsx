@@ -15,10 +15,10 @@ function Notification({ text, setNotification }: Props) {
     }
   }
   useEffect(() => {
-    document.addEventListener("keydown", onEscape)
+    document.addEventListener("keyup", onEscape)
 
     return () => {
-      document.removeEventListener("keydown", onEscape)
+      document.removeEventListener("keyup", onEscape)
     }
   }, [])
 

@@ -11,8 +11,6 @@ function ClipboardPage() {
   const [copiedColor, setCopiedColor] = useState("")
   const [notification, setNotification] = useState(false)
 
-  console.log(palette)
-
   useEffect(() => {
     const storagePrefix = "chromatico"
     localStorage.setItem(
@@ -57,6 +55,7 @@ function ClipboardPage() {
               {palette?.map((paletteItem, index) => (
                 <motion.div
                   className="flex flex-col items-center gap-2"
+                  key={index}
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -100, opacity: 0 }}
