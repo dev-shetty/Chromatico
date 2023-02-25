@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
+import Footer from "../components/UIComponents/Footer/Footer"
 import Notification from "../components/UIComponents/Modals/Notification"
 import { clipboardContext } from "../context/ClipboardProvider"
 import { colorsContext } from "../context/ColorsProvider"
@@ -84,6 +85,10 @@ function HomePage() {
             className="heart scale-150 cursor-pointer hover:text-red-500"
           />
         </div> */}
+        <Footer
+          onGenerate={generateRandomColors}
+          onLike={() => setModal(true)}
+        />
       </main>
       {notification && (
         <Notification

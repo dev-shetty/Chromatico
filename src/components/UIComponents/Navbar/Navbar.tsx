@@ -25,14 +25,15 @@ function Navbar() {
           </p>
         </Link>
       </div>
-      <nav>
-        <button>  </button>
-      </nav>
       <nav className="hidden md:grid grid-rows-2">
         <div className="primary-nav flex justify-center items-center bg-primary-100">
           <div className="flex w-full justify-between ml-auto mr-8">
             <div className="ml-4">
-              <p className="opacity-75">Spacebar to Generate</p>
+              {route === "/" ? (
+                <p className="opacity-75">Spacebar to Generate</p>
+              ) : (
+                <p></p>
+              )}
             </div>
             <Link
               to={route === "/clipboard" ? "/" : "/clipboard"}
