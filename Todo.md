@@ -1,12 +1,12 @@
 # Todo and Potential Bugs
 
-- [ ] Feature to delete individual palette
-
 - [ ] Don't allow Copying of Duplicate Palette
 
 - [ ] Remove the bug that the color is only stored when we switch to Clipboard Page (Maybe add backend?)
 
 - [ ] Not to re-generate palette when switching pages
+
+- [x] Feature to delete individual palette
 
 - [x] Improve UI of the add Name Modal
 

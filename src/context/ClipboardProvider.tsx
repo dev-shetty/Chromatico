@@ -22,8 +22,12 @@ const savedPalettes = localStorage.getItem("chromatico-palette")
 export const clipboardContext = React.createContext<Partial<clipboardProps>>({})
 
 function ClipboardProvider({ children }: ChildrenProp) {
-  const [clipboard, setClipboard] = useState<string[]>(JSON.parse(savedColors!))
-  const [palette, setPalette] = useState<Palette>(JSON.parse(savedPalettes!))
+  const [clipboard, setClipboard] = useState<string[]>(
+    JSON.parse(savedColors!) || []
+  )
+  const [palette, setPalette] = useState<Palette>(
+    JSON.parse(savedPalettes!) || []
+  )
   return (
     <clipboardContext.Provider
       value={{ clipboard, setClipboard, palette, setPalette }}
