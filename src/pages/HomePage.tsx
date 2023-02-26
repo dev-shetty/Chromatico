@@ -21,8 +21,9 @@ function HomePage({ save, setSave }: Props) {
   const { palette } = useContext(clipboardContext)
   const { history, setHistory } = useContext(historyContext)
 
+  const offset = useRef({ value: 0 })
+
   const [notification, setNotification] = useState(false)
-  const [index, setIndex] = useState(1)
   const [modal, setModal] = useState(false)
 
   const paletteNameRef = useRef<HTMLInputElement>(null)
@@ -52,21 +53,32 @@ function HomePage({ save, setSave }: Props) {
     if (event.key === "Escape") {
       setModal(false)
     }
+  }
+
+  function toggleLeft() {
+    const historyLength: number = history?.length!
+    if (offset.current.value < historyLength - 3) {
+      // -3 because there are already 3 elements in skeletal history
+      offset.current.value += 1
+      setColors?.(history![historyLength - offset.current.value - 1])
+    }
+  }
+
+  function toggleRight() {
+    const historyLength: number = history?.length!
+    if (offset.current.value > 0) {
+      offset.current.value -= 1
+      setColors?.(history![historyLength - offset.current.value - 1])
+    }
+  }
+
+  function toggleHistory(event: KeyboardEvent) {
+    if (modal) return
     if (event.key === "ArrowLeft") {
-      if (index < history?.length! - 2) {
-        console.log("History Length: " + (history?.length! - 2))
-        setIndex((prev) => prev + 1)
-        console.log("Left Index: " + index)
-        setColors?.(history![history?.length! - index - 1])
-      }
+      toggleLeft()
     }
     if (event.key === "ArrowRight") {
-      if (index > 0) {
-        console.log("History Length: " + history?.length)
-        setIndex((prev) => prev - 1)
-        console.log("Right Index: " + index)
-        setColors?.(history![history?.length! - index - 1])
-      }
+      toggleRight()
     }
   }
 
@@ -100,11 +112,18 @@ function HomePage({ save, setSave }: Props) {
   }, [save])
 
   useEffect(() => {
+    document.addEventListener("keyup", toggleHistory)
+    return () => {
+      document.removeEventListener("keyup", toggleHistory)
+    }
+  }, [offset, modal])
+
+  useEffect(() => {
     document.addEventListener("keyup", onKeyPress)
     return () => {
       document.removeEventListener("keyup", onKeyPress)
     }
-  }, [modal, index])
+  }, [modal])
 
   return (
     <div className="h-[90%] w-full">
@@ -113,6 +132,8 @@ function HomePage({ save, setSave }: Props) {
         <Footer
           onGenerate={generateRandomColors}
           onLike={() => setModal(true)}
+          onLeftToggle={toggleLeft}
+          onRightToggle={toggleRight}
         />
       </main>
       {notification && (

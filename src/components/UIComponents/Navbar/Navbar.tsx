@@ -90,7 +90,12 @@ function Navbar({ setSave }: Props) {
           </div>
         </div>
         <div className="secondary-nav flex items-center justify-between px-2">
-          {route === "/" && <p className="opacity-75">Spacebar to Generate</p>}
+          {route === "/" && (
+            <>
+              <p className="opacity-75">Spacebar to Generate</p>
+              <p className="opacity-75">Press &#8592; &#8594; for History</p>
+            </>
+          )}
           {route === "/" && (
             <div
               className="flex items-center gap-2 cursor-pointer hover:text-red-400 text-lg"
