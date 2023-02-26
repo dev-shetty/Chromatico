@@ -53,13 +53,13 @@ function ClipboardPage() {
           setNotification={setNotification}
         />
       )}
-      <h2 className="text-center font-bold text-4xl text-primary-100">
+      <h2 className="text-center font-bold my-2 text-4xl text-accent-500 font-chromatico">
         Dashboard
       </h2>
-      <div className="mx-auto my-4">
+      <div className="mx-auto">
         <ToggleNav active={activeToggle} setActive={setActiveToggle} />
       </div>
-      <div className="grid m-2 p-2 gap-4">
+      <div className="grid my-4 mx-2 p-2 gap-4">
         {activeToggle === 1 && (
           <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-2">
             {palette?.map((paletteItem, index) => (
