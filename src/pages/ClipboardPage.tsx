@@ -7,6 +7,14 @@ import { clipboardContext } from "../context/ClipboardProvider"
 import { copyToClipboard } from "../lib/clipboard"
 import { NavigationOption } from "../lib/types"
 
+type Palette = {
+  uuid: string
+  colors: string[]
+  name: string
+}
+
+type Palettes = [Palette]
+
 function ClipboardPage() {
   const { palette, clipboard, setClipboard, setPalette } =
     useContext(clipboardContext)
@@ -35,16 +43,20 @@ function ClipboardPage() {
     }, NOTIFICATION_TIMER)
   }
 
+  function deletePalette(deleteItem: Palette) {
+    let index: number = -1
+    const paletteCopy: Palettes = [...palette!]
+    palette?.map((item, i) => {
+      if (item.uuid === deleteItem.uuid) index = i
+    })
+    paletteCopy?.splice(index, 1)
+    setPalette?.([...paletteCopy!])
+  }
+
   function clearClipboard() {
     if (activeToggle === 2) setClipboard?.([])
-    else if (activeToggle === 1)
-      setPalette?.([
-        {
-          colors: [],
-          name: "",
-        },
-      ])
   }
+
   return (
     <section className="flex flex-col p-4">
       {notification && (
@@ -61,7 +73,7 @@ function ClipboardPage() {
       </div>
       <div className="grid my-4 mx-2 p-2 gap-4">
         {activeToggle === 1 && (
-          <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-2">
+          <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-6">
             {palette?.map((paletteItem, index) => (
               <motion.div
                 className="flex flex-col items-center gap-2"
@@ -80,14 +92,20 @@ function ClipboardPage() {
                     ></div>
                   ))}
                 </div>
-                <p>{paletteItem.name}</p>
+                <div className="relative flex items-center justify-center w-[17.5rem] sm:w-[25rem]">
+                  <p>{paletteItem.name}</p>
+                  <FiTrash2
+                    className="absolute right-0 text-red-500 cursor-pointer"
+                    onClick={() => deletePalette(paletteItem)}
+                  />
+                </div>
               </motion.div>
             ))}
           </div>
         )}
         {activeToggle === 2 && (
           <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
               {clipboard?.map((color, index) => (
                 <motion.div
                   key={index}
@@ -108,15 +126,17 @@ function ClipboardPage() {
           </div>
         )}
       </div>
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8">
-        <button
-          className="bg-red-500 p-4 text-primary-100 rounded-full hover:text-red-500 hover:bg-primary-100 transition-colors"
-          title="Clear Clipboard"
-          onClick={clearClipboard}
-        >
-          <FiTrash2 className="scale-150" />
-        </button>
-      </div>
+      {activeToggle === 2 && (
+        <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8">
+          <button
+            className="bg-red-500 p-4 text-primary-100 rounded-full hover:text-red-500 hover:bg-primary-100 transition-colors"
+            title="Clear Clipboard"
+            onClick={clearClipboard}
+          >
+            <FiTrash2 className="scale-150" />
+          </button>
+        </div>
+      )}
     </section>
   )
 }

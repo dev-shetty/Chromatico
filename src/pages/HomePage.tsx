@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react"
-import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
+import { v4 as uuid } from "uuid"
 import ColorPalette from "../components/Palette/ColorPalette"
 import PrimaryBtn from "../components/UIComponents/Buttons/PrimaryBtn"
 import Footer from "../components/UIComponents/Footer/Footer"
@@ -51,8 +52,9 @@ function HomePage({ save, setSave }: Props) {
     e.preventDefault()
     const name = paletteNameRef.current?.value
     const NOTIFICATION_TIMER = 3000
-    if (palette![0].name === "") palette?.pop()
+    // if (palette![0].name === "") palette?.pop()
     palette?.push({
+      uuid: uuid(),
       colors: colors!,
       name: name!,
     })
@@ -86,17 +88,6 @@ function HomePage({ save, setSave }: Props) {
     <div className="h-[90%] w-full">
       <main className="h-full flex flex-col">
         <ColorPalette />
-        {/* <div className="my-8 flex items-center gap-4 justify-center self-center w-full">
-          <PrimaryBtn
-            text="Generate Palette &nbsp; [Spacebar]"
-            onClick={generateRandomColors}
-          />
-          <AiOutlineHeart
-            onClick={() => setModal(true)}
-            title="Save the Palette"
-            className="heart scale-150 cursor-pointer hover:text-red-500"
-          />
-        </div> */}
         <Footer
           onGenerate={generateRandomColors}
           onLike={() => setModal(true)}
@@ -119,6 +110,7 @@ function HomePage({ save, setSave }: Props) {
                   name="paletteName"
                   id="paletteName"
                   className="p-2 border border-gray-500 w-full rounded-lg"
+                  autoFocus
                   ref={paletteNameRef}
                 />
               </div>

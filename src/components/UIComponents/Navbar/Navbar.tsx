@@ -64,7 +64,7 @@ function Navbar({ setSave }: Props) {
                   className={`flex items-center cursor-pointer gap-1 ${
                     route === "/"
                       ? "hover:text-accent-500 "
-                      : "hover:text-primary-900 text-white"
+                      : "hover:text-primary-100 text-primary-900"
                   } text-lg mr-2`}
                 >
                   <p>Home</p>

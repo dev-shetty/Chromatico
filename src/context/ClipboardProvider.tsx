@@ -10,6 +10,7 @@ type clipboardProps = {
 
 type Palette = [
   {
+    uuid: string
     colors: string[]
     name: string
   }

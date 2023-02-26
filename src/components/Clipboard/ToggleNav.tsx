@@ -8,7 +8,7 @@ type Props = {
 function ToggleNav({ active, setActive }: Props) {
   return (
     <div className="flex items-center">
-      <div className="flex justify-center text-center my-2 rounded-lg ">
+      <div className="flex justify-center text-center my-2 rounded-lg">
         <p
           className={`px-4 py-2 ${
             active === 1 && "bg-accent-500 rounded-lg shadow-md shadow-gray-400"
