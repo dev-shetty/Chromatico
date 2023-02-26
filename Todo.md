@@ -1,5 +1,15 @@
 # Todo and Potential Bugs
 
+- [ ] Feature to delete individual palette
+
+- [ ] Don't allow Copying of Duplicate Palette
+
+- [ ] Remove the bug that the color is only stored when we switch to Clipboard Page (Maybe add backend?)
+
+- [ ] Not to re-generate palette when switching pages
+
+- [x] Improve UI of the add Name Modal
+
 - [x] Copy the Palette and show in UI
 
 - [x] Add a modal which asks for name of the Palette to save
@@ -10,16 +20,8 @@
 
 - [x] Add buttons to toggle between Palette and Colors Tab
 
-- [ ] Improve UI of the add Name Modal
-
 - [x] Improve Responsiveness of the project
 
 - [x] Improve the Color theme of the project (Background and all)
 
 - [x] Clear the Palettes on clearing clipboard (or add new button in new section as mentioned above)
-
-- [ ] Don't allow Copying of Duplicate Palette
-
-- [ ] Remove the bug that the color is only stored when we switch to Clipboard Page (Maybe add backend?)
-
-- [ ] Not to re-generate palette when switching pages

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import Chromatico from "../../../assets/Chromatico"
 import { useContext, useEffect, useState } from "react"
-import { FiArrowRight } from "react-icons/fi"
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai"
 import { clipboardContext } from "../../../context/ClipboardProvider"
 
@@ -65,9 +65,10 @@ function Navbar({ setSave }: Props) {
                     route === "/"
                       ? "hover:text-accent-500 "
                       : "hover:text-primary-900 text-white"
-                  } text-lg mr-4`}
+                  } text-lg mr-2`}
                 >
                   <p>Home</p>
+                  <FiArrowLeft className="-mt-[0.1rem]" />
                 </div>
               )}
             </Link>

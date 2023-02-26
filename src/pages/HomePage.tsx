@@ -109,38 +109,31 @@ function HomePage({ save, setSave }: Props) {
         />
       )}
       {modal && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  shadow-lg shadow-gray-400">
-          <div className="relative py-12 px-16 bg-primary-100 ">
-            <form onSubmit={copyPallete}>
-              <div className="flex flex-col items-center gap-8">
-                <div className="flex gap-4 items-center">
-                  <label htmlFor="paletteName">Palette Name</label>
-                  <input
-                    type="text"
-                    name="paletteName"
-                    id="paletteName"
-                    className="py-1 px-2"
-                    ref={paletteNameRef}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="border-2 px-4 py-2 bg-primary-600 hover:bg-primary-400 "
-                >
-                  Save
-                </button>
+        <div className="absolute flex flex-col items-center justify-center bg-primary-100 rounded-lg h-2/5 aspect-[4/3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <form onSubmit={copyPallete}>
+            <div className="flex flex-col items-center gap-8">
+              <div className="flex flex-col gap-2 w-full">
+                <label htmlFor="paletteName">Palette Name</label>
+                <input
+                  type="text"
+                  name="paletteName"
+                  id="paletteName"
+                  className="p-2 border border-gray-500 w-full rounded-lg"
+                  ref={paletteNameRef}
+                />
               </div>
-            </form>
-            <button
-              className="absolute top-2 right-4 text-red-600"
-              onClick={() => {
-                setModal(false)
-                setSave(false)
-              }}
-            >
-              <AiOutlineClose />
-            </button>
-          </div>
+              <PrimaryBtn type="submit" text="Save"></PrimaryBtn>
+            </div>
+          </form>
+          <button
+            className="absolute top-4 right-4 text-xl text-red-500 hover:rotate-90 transition-all"
+            onClick={() => {
+              setModal(false)
+              setSave(false)
+            }}
+          >
+            <AiOutlineClose />
+          </button>
         </div>
       )}
     </div>
