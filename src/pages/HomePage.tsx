@@ -57,8 +57,8 @@ function HomePage({ save, setSave }: Props) {
 
   function toggleLeft() {
     const historyLength: number = history?.length!
-    if (offset.current.value < historyLength - 3) {
-      // -3 because there are already 3 elements in skeletal history
+    if (offset.current.value < historyLength - 2) {
+      // -2 because there are already 3 elements in skeletal history
       offset.current.value += 1
       setColors?.(history![historyLength - offset.current.value - 1])
     }
