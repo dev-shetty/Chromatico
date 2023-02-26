@@ -73,7 +73,7 @@ function ClipboardPage() {
       </div>
       <div className="grid my-4 mx-2 p-2 gap-4">
         {activeToggle === 1 && (
-          <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-6">
+          <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-3 md:gap-6">
             {palette?.map((paletteItem, index) => (
               <motion.div
                 className="flex flex-col items-center gap-2"
@@ -105,7 +105,7 @@ function ClipboardPage() {
         )}
         {activeToggle === 2 && (
           <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-3 md:gap-6">
               {clipboard?.map((color, index) => (
                 <motion.div
                   key={index}

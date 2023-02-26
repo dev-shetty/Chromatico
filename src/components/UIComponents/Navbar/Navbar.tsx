@@ -40,6 +40,25 @@ function Navbar({ setSave }: Props) {
           </p>
         </Link>
       </div>
+      <div className="md:hidden ml-auto mr-2 self-center">
+        <Link to={route === "/" ? "/clipboard" : "/"}>
+          <div
+            className={`flex items-center cursor-pointer gap-1 text-accent-500 mr-2`}
+          >
+            {route === "/" ? (
+              <>
+                <p>Palettes</p>
+                <FiArrowRight className="-mt-[0.1rem]" />
+              </>
+            ) : (
+              <>
+                <p className="text-primary-100">Home</p>
+                <FiArrowLeft className="-mt-[0.1rem] text-primary-100" />
+              </>
+            )}
+          </div>
+        </Link>
+      </div>
       <nav className="hidden md:grid grid-rows-2">
         <div className="justify-center my-auto items-center">
           <div className="primary-nav flex w-full justify-between ml-auto mr-8">
@@ -48,29 +67,25 @@ function Navbar({ setSave }: Props) {
               to={route === "/clipboard" ? "/" : "/clipboard"}
               onClick={changeRoute}
             >
-              {route === "/" ? (
-                <div
-                  className={`flex items-center cursor-pointer gap-1 ${
-                    route === "/"
-                      ? "hover:text-accent-500 "
-                      : "hover:text-primary-100 "
-                  } mr-2`}
-                >
-                  <p>Palettes</p>
-                  <FiArrowRight className="-mt-[0.1rem]" />
-                </div>
-              ) : (
-                <div
-                  className={`flex items-center cursor-pointer gap-1 ${
-                    route === "/"
-                      ? "hover:text-accent-500 "
-                      : "hover:text-primary-100 text-primary-900"
-                  } text-lg mr-2`}
-                >
-                  <p>Home</p>
-                  <FiArrowLeft className="-mt-[0.1rem]" />
-                </div>
-              )}
+              <div
+                className={`flex items-center cursor-pointer gap-1 ${
+                  route === "/"
+                    ? "hover:text-accent-500 "
+                    : "hover:text-primary-100 "
+                } mr-2`}
+              >
+                {route === "/" ? (
+                  <>
+                    <p>Palettes</p>
+                    <FiArrowRight className="-mt-[0.1rem]" />
+                  </>
+                ) : (
+                  <>
+                    <p>Home</p>
+                    <FiArrowLeft className="-mt-[0.1rem]" />
+                  </>
+                )}
+              </div>
             </Link>
           </div>
         </div>
