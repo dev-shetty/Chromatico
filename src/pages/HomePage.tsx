@@ -9,7 +9,12 @@ import { colorsContext } from "../context/ColorsProvider"
 import { randomNumber, convertToHex } from "../lib/math"
 import { KeyboardEvent } from "../lib/types"
 
-function HomePage() {
+type Props = {
+  save: boolean
+  setSave: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function HomePage({ save, setSave }: Props) {
   const { colors, setColors } = useContext(colorsContext)
   const { palette } = useContext(clipboardContext)
 
@@ -53,6 +58,7 @@ function HomePage() {
     })
     setNotification(true)
     setModal(false)
+    setSave(false)
 
     setTimeout(() => {
       setNotification(false)
@@ -62,6 +68,12 @@ function HomePage() {
   useEffect(() => {
     generateRandomColors()
   }, [])
+
+  useEffect(() => {
+    if (save) {
+      setModal(true)
+    }
+  }, [save])
 
   useEffect(() => {
     document.addEventListener("keyup", onKeyPress)
@@ -121,7 +133,10 @@ function HomePage() {
             </form>
             <button
               className="absolute top-2 right-4 text-red-600"
-              onClick={() => setModal(false)}
+              onClick={() => {
+                setModal(false)
+                setSave(false)
+              }}
             >
               <AiOutlineClose />
             </button>

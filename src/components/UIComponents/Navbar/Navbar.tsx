@@ -76,7 +76,10 @@ function Navbar({ setSave }: Props) {
         <div className="secondary-nav flex items-center justify-between px-2">
           {route === "/" && <p className="opacity-75">Spacebar to Generate</p>}
           {route === "/" && (
-            <div className="flex items-center gap-2 cursor-pointer hover:text-red-400 text-lg">
+            <div
+              className="flex items-center gap-2 cursor-pointer hover:text-red-400 text-lg"
+              onClick={() => setSave(true)}
+            >
               <AiOutlineHeart />
               <p>Save Palette</p>
             </div>

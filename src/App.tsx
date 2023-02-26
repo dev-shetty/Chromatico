@@ -3,14 +3,19 @@ import HomePage from "./pages/HomePage"
 import Navbar from "./components/UIComponents/Navbar/Navbar"
 import ClipboardPage from "./pages/ClipboardPage"
 import "./App.css"
+import { useState } from "react"
 
 function App() {
+  const [save, setSave] = useState(false)
   return (
     <div className="h-full primary-gradient">
       <Router>
-        <Navbar />
+        <Navbar setSave={setSave} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={<HomePage save={save} setSave={setSave} />}
+          />
           <Route path="/clipboard" element={<ClipboardPage />} />
         </Routes>
       </Router>

@@ -6,17 +6,17 @@
 
 - [x] Add an option to add name to the palette
 
-- [ ] Add Heart icon to save instead of copy palette button
+- [x] Add Heart icon to save instead of copy palette button
 
-- [ ] Add buttons to toggle between Palette and Colors Tab
+- [x] Add buttons to toggle between Palette and Colors Tab
 
 - [ ] Improve UI of the add Name Modal
 
-- [ ] Improve Responsiveness of the project
+- [x] Improve Responsiveness of the project
 
-- [ ] Improve the Color theme of the project (Background and all)
+- [x] Improve the Color theme of the project (Background and all)
 
-- [ ] Clear the Palettes on clearing clipboard (or add new button in new section as mentioned above)
+- [x] Clear the Palettes on clearing clipboard (or add new button in new section as mentioned above)
 
 - [ ] Don't allow Copying of Duplicate Palette
 
