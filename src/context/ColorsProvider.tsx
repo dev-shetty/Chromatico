@@ -1,16 +1,14 @@
-import React, { useState } from "react"
+import { createContext, useState } from "react"
 import { ChildrenProp } from "../lib/types"
 
 type colorsProps = {
   colors: string[]
   setColors: (colors: string[]) => void
-  copiedColor: string
-  setCopiedColor: (color: string) => void
 }
 
-export const colorsContext = React.createContext<Partial<colorsProps>>({})
+export const colorsContext = createContext<Partial<colorsProps>>({})
 
-function colorsProvider({ children }: ChildrenProp) {
+function ColorsProvider({ children }: ChildrenProp) {
   const [colors, setColors] = useState<string[]>([])
 
   return (
@@ -20,4 +18,4 @@ function colorsProvider({ children }: ChildrenProp) {
   )
 }
 
-export default colorsProvider
+export default ColorsProvider

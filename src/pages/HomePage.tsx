@@ -7,6 +7,7 @@ import Footer from "../components/UIComponents/Footer/Footer"
 import Notification from "../components/UIComponents/Modals/Notification"
 import { clipboardContext } from "../context/ClipboardProvider"
 import { colorsContext } from "../context/ColorsProvider"
+import { historyContext } from "../context/HistoryProvider"
 import { randomNumber, convertToHex } from "../lib/math"
 import { KeyboardEvent } from "../lib/types"
 
@@ -18,8 +19,10 @@ type Props = {
 function HomePage({ save, setSave }: Props) {
   const { colors, setColors } = useContext(colorsContext)
   const { palette } = useContext(clipboardContext)
+  const { history, setHistory } = useContext(historyContext)
 
   const [notification, setNotification] = useState(false)
+  const [index, setIndex] = useState(1)
   const [modal, setModal] = useState(false)
 
   const paletteNameRef = useRef<HTMLInputElement>(null)
@@ -36,7 +39,10 @@ function HomePage({ save, setSave }: Props) {
     // * "?." makes sure that the function is not undefined
     // * "Cannot invoke an object which is possibly 'undefined'." <- this bug
 
-    if (randomColor) setColors?.(randomColor)
+    if (randomColor) {
+      setColors?.(randomColor)
+      history?.push(randomColor)
+    }
   }
 
   function onKeyPress(event: KeyboardEvent) {
@@ -45,6 +51,22 @@ function HomePage({ save, setSave }: Props) {
     }
     if (event.key === "Escape") {
       setModal(false)
+    }
+    if (event.key === "ArrowLeft") {
+      if (index < history?.length! - 2) {
+        console.log("History Length: " + (history?.length! - 2))
+        setIndex((prev) => prev + 1)
+        console.log("Left Index: " + index)
+        setColors?.(history![history?.length! - index - 1])
+      }
+    }
+    if (event.key === "ArrowRight") {
+      if (index > 0) {
+        console.log("History Length: " + history?.length)
+        setIndex((prev) => prev - 1)
+        console.log("Right Index: " + index)
+        setColors?.(history![history?.length! - index - 1])
+      }
     }
   }
 
@@ -82,7 +104,7 @@ function HomePage({ save, setSave }: Props) {
     return () => {
       document.removeEventListener("keyup", onKeyPress)
     }
-  }, [modal])
+  }, [modal, index])
 
   return (
     <div className="h-[90%] w-full">

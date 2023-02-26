@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction, useState } from "react"
+import { createContext, Dispatch, SetStateAction, useState } from "react"
 import { ChildrenProp } from "../lib/types"
 
-type clipboardProps = {
+type ClipboardProps = {
   clipboard: string[]
   setClipboard: Dispatch<SetStateAction<string[]>>
   palette: Palette
-  setPalette: React.Dispatch<React.SetStateAction<Palette>>
+  setPalette: Dispatch<React.SetStateAction<Palette>>
 }
 
 type Palette = [
@@ -19,7 +19,7 @@ type Palette = [
 const savedColors = localStorage.getItem("chromatico-clipboard")
 const savedPalettes = localStorage.getItem("chromatico-palette")
 
-export const clipboardContext = React.createContext<Partial<clipboardProps>>({})
+export const clipboardContext = createContext<Partial<ClipboardProps>>({})
 
 function ClipboardProvider({ children }: ChildrenProp) {
   const [clipboard, setClipboard] = useState<string[]>(

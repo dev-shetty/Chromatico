@@ -9,7 +9,7 @@ function Footer({ onGenerate, onLike }: Props) {
   return (
     <div className="flex lg:hidden h-[7%] items-center">
       <button
-        className="mx-2 border-[1px] px-2 py-1 my-1 rounded-lg bg-accent-500 hover:bg-gray-200"
+        className="mx-2 border-[1px] px-2 py-1 my-1 rounded-lg bg-accent-500"
         onClick={onGenerate}
       >
         Generate
