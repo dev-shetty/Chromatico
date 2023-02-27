@@ -6,6 +6,8 @@
 
 - [ ] Not to re-generate palette when switching pages
 
+- [x] User can toggle history by pressing arrow keys / buttons
+
 - [x] Feature to delete individual palette
 
 - [x] Improve UI of the add Name Modal

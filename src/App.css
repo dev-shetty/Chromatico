@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Cursive-Chromatico";
+  src: url("/fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf");
+}
+
 html,
 body,
 #root {
@@ -29,9 +34,9 @@ div:has(#Chromatico-logo):hover > p {
   transition: all 1s ease-in-out;
 }
 
-@font-face {
-  font-family: "Cursive-Chromatico";
-  src: url("/fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf");
+kbd {
+  all: unset;
+  @apply bg-gray-600 px-2 py-0.5 rounded-md text-primary-100 shadow-sm shadow-primary-900;
 }
 
 /* * {

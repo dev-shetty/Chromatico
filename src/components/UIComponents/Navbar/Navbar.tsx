@@ -1,12 +1,11 @@
 import { Link, useLocation } from "react-router-dom"
 import Chromatico from "../../../assets/Chromatico"
-import { useContext, useEffect, useState } from "react"
+import { Dispatch, useEffect, useState } from "react"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai"
-import { clipboardContext } from "../../../context/ClipboardProvider"
 
 type Props = {
-  setSave: React.Dispatch<React.SetStateAction<boolean>>
+  setSave: Dispatch<React.SetStateAction<boolean>>
 }
 
 function Navbar({ setSave }: Props) {
@@ -92,8 +91,12 @@ function Navbar({ setSave }: Props) {
         <div className="secondary-nav flex items-center justify-between px-2">
           {route === "/" && (
             <>
-              <p className="opacity-75">Spacebar to Generate</p>
-              <p className="opacity-75">Press &#8592; &#8594; for History</p>
+              <div className="opacity-75">
+                <kbd>Spacebar</kbd> to Generate
+              </div>
+              <div className="opacity-75 flex items-center gap-2">
+                Press <kbd>&#8592;</kbd> <kbd>&#8594;</kbd> for History
+              </div>
             </>
           )}
           {route === "/" && (
