@@ -13,10 +13,12 @@ function Palette({ color }: Props) {
 
   const [notification, setNotification] = useState(false)
   const [colorCode, setColorCode] = useState(color) // this is in hexCode
+  const [originalColor, setOriginalColor] = useState(color)
 
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(colorCode)
+    setOriginalColor(colorCode)
 
     // To check whether the color is repeated if not then push
     const isColorAlreadyPresent = clipboard?.find(
@@ -50,7 +52,7 @@ function Palette({ color }: Props) {
     <>
       {notification && (
         <Notification
-          text={`${colorCode} has been copied to clipboard`}
+          text={`${originalColor} has been copied to clipboard`}
           setNotification={setNotification}
         />
       )}
