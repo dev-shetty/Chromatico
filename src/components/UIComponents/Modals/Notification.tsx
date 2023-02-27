@@ -24,7 +24,7 @@ function Notification({ text, setNotification }: Props) {
 
   return (
     <motion.div
-      className="absolute top-[11%] left-1/2 -translate-x-1/2 flex items-center gap-4 bg-primary-100 w-max md:w-fit px-4 py-2 rounded-full z-10"
+      className="absolute top-[11%] left-1/2 -translate-x-1/2 flex items-center gap-4 bg-primary-100 text-center w-[98%] md:w-fit px-4 py-2 rounded-full z-10"
       initial={{ opacity: 0, y: -100, x: "-50%" }}
       animate={{ opacity: 1, y: 0 }}
     >

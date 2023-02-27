@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import Chromatico from "../../../assets/Chromatico"
 import { Dispatch, useEffect, useState } from "react"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
+import { FaGithub, FaGithubSquare, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { AiOutlineHeart } from "react-icons/ai"
 
 type Props = {
@@ -61,7 +62,23 @@ function Navbar({ setSave }: Props) {
       <nav className="hidden md:grid grid-rows-2">
         <div className="justify-center my-auto items-center">
           <div className="primary-nav flex w-full justify-between ml-auto mr-8">
-            <div></div>
+            <div className="px-2 flex items-center gap-2 text-xl">
+              <a
+                href="https://github.com/Deveesh-Shetty/Chromatico"
+                target="_blank"
+              >
+                <FaGithub className="hover:text-accent-500 cursor-pointer" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/deveesh-shetty-908539214"
+                target="_blank"
+              >
+                <FaLinkedin className="hover:text-accent-500 cursor-pointer" />
+              </a>
+              <a href="https://twitter.com/shettydeveesh" target="_blank">
+                <FaTwitter className="hover:text-accent-500 cursor-pointer" />
+              </a>
+            </div>
             <Link
               to={route === "/clipboard" ? "/" : "/clipboard"}
               onClick={changeRoute}
