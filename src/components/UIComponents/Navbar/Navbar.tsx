@@ -6,10 +6,10 @@ import { FaGithub, FaGithubSquare, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { AiOutlineHeart } from "react-icons/ai"
 
 type Props = {
-  setSave: Dispatch<React.SetStateAction<boolean>>
+  setCopyPalette: Dispatch<React.SetStateAction<boolean>>
 }
 
-function Navbar({ setSave }: Props) {
+function Navbar({ setCopyPalette }: Props) {
   const location = useLocation()
   const [route, setRoute] = useState(location.pathname)
 
@@ -137,7 +137,7 @@ function Navbar({ setSave }: Props) {
           {route === "/" && (
             <div
               className="flex items-center gap-2 cursor-pointer hover:text-red-400 text-lg"
-              onClick={() => setSave(true)}
+              onClick={() => setCopyPalette(true)}
             >
               <AiOutlineHeart />
               <p>Save Palette</p>

@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="h-full primary-gradient">
       <Router>
-        <Navbar setSave={setCopyPalette} />
+        <Navbar setCopyPalette={setCopyPalette} />
         <Routes>
           <Route
             path="/"

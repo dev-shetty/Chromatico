@@ -81,7 +81,7 @@ function HomePage({ copyPalette, setCopyPalette }: Props) {
     }
   }
 
-  function copyPallete(e: React.FormEvent<HTMLFormElement>) {
+  function onCopyPallete(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const name = paletteNameRef.current?.value
     const NOTIFICATION_TIMER = 3000
@@ -145,7 +145,7 @@ function HomePage({ copyPalette, setCopyPalette }: Props) {
       )}
       {modal && (
         <div className="absolute flex flex-col items-center justify-center bg-primary-100 rounded-lg h-2/5 aspect-[6/5] md:aspect-[4/3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <form onSubmit={copyPallete}>
+          <form onSubmit={onCopyPallete}>
             <div className="flex flex-col items-center gap-8">
               <h2 className="text-3xl font-chromatico">Save Palette</h2>
               <div className="flex flex-col gap-2 w-full">

@@ -1,7 +1,5 @@
 # Todo and Potential Bugs
 
-- [ ] Don't allow Copying of Duplicate Palette
-
 - [ ] Not to re-generate palette when switching pages
 
 - [x] Remove the bug that the color is only stored when we switch to Clipboard Page
