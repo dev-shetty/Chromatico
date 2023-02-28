@@ -12,14 +12,14 @@ import { randomNumber, convertToHex } from "../lib/math"
 import { KeyboardEvent } from "../lib/types"
 
 type Props = {
-  save: boolean
-  setSave: React.Dispatch<React.SetStateAction<boolean>>
+  copyPalette: boolean
+  setCopyPalette: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function HomePage({ save, setSave }: Props) {
+function HomePage({ copyPalette, setCopyPalette }: Props) {
   const { colors, setColors } = useContext(colorsContext)
   const { palette } = useContext(clipboardContext)
-  const { history, setHistory } = useContext(historyContext)
+  const { history } = useContext(historyContext)
 
   const [notification, setNotification] = useState(false)
   const [modal, setModal] = useState(false)
@@ -93,7 +93,7 @@ function HomePage({ save, setSave }: Props) {
     })
     setNotification(true)
     setModal(false)
-    setSave(false)
+    setCopyPalette(false)
 
     setTimeout(() => {
       setNotification(false)
@@ -105,17 +105,12 @@ function HomePage({ save, setSave }: Props) {
   }, [])
 
   useEffect(() => {
-    if (save) {
+    if (copyPalette) {
       setModal(true)
     }
-  }, [save])
-
-  useEffect(() => {
-    document.addEventListener("keyup", toggleHistory)
-    return () => {
-      document.removeEventListener("keyup", toggleHistory)
-    }
-  }, [offset, modal])
+    const storagePrefix = "chromatico"
+    localStorage.setItem(storagePrefix + "-palette", JSON.stringify(palette))
+  }, [copyPalette])
 
   useEffect(() => {
     document.addEventListener("keyup", onKeyPress)
@@ -123,6 +118,13 @@ function HomePage({ save, setSave }: Props) {
       document.removeEventListener("keyup", onKeyPress)
     }
   }, [modal])
+
+  useEffect(() => {
+    document.addEventListener("keyup", toggleHistory)
+    return () => {
+      document.removeEventListener("keyup", toggleHistory)
+    }
+  }, [offset, modal])
 
   return (
     <div className="h-[90%] w-full">
@@ -164,7 +166,7 @@ function HomePage({ save, setSave }: Props) {
             className="absolute top-4 right-4 text-xl text-red-500 hover:rotate-90 transition-all"
             onClick={() => {
               setModal(false)
-              setSave(false)
+              setCopyPalette(false)
             }}
           >
             <AiOutlineClose />

@@ -2,19 +2,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import Navbar from "./components/UIComponents/Navbar/Navbar"
 import ClipboardPage from "./pages/ClipboardPage"
-import "./App.css"
 import { useState } from "react"
+import "./App.css"
 
 function App() {
-  const [save, setSave] = useState(false)
+  const [copyPalette, setCopyPalette] = useState(false)
   return (
     <div className="h-full primary-gradient">
       <Router>
-        <Navbar setSave={setSave} />
+        <Navbar setSave={setCopyPalette} />
         <Routes>
           <Route
             path="/"
-            element={<HomePage save={save} setSave={setSave} />}
+            element={
+              <HomePage
+                copyPalette={copyPalette}
+                setCopyPalette={setCopyPalette}
+              />
+            }
           />
           <Route path="/clipboard" element={<ClipboardPage />} />
         </Routes>
