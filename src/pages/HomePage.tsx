@@ -21,11 +21,10 @@ function HomePage({ save, setSave }: Props) {
   const { palette } = useContext(clipboardContext)
   const { history, setHistory } = useContext(historyContext)
 
-  const offset = useRef({ value: 0 })
-
   const [notification, setNotification] = useState(false)
   const [modal, setModal] = useState(false)
 
+  const offset = useRef({ value: 0 })
   const paletteNameRef = useRef<HTMLInputElement>(null)
 
   function generateRandomColors() {

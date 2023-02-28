@@ -30,9 +30,9 @@ function ClipboardPage() {
       JSON.stringify(clipboard)
     )
     localStorage.setItem(storagePrefix + "-palette", JSON.stringify(palette))
-  }, [clipboard, palette])
+  }, [palette, clipboard])
 
-  function onClick(color: string) {
+  function onCopy(color: string) {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(color)
     setNotification(true)
@@ -87,7 +87,7 @@ function ClipboardPage() {
                     <div
                       className="h-14 sm:h-20 aspect-square cursor-pointer gap-2"
                       key={index}
-                      onClick={() => onClick(color)}
+                      onClick={() => onCopy(color)}
                       style={{ backgroundColor: color }}
                     ></div>
                   ))}
@@ -116,7 +116,7 @@ function ClipboardPage() {
                 >
                   <div
                     className="h-24 md:h-36 aspect-square cursor-pointer rounded-lg"
-                    onClick={() => onClick(color)}
+                    onClick={() => onCopy(color)}
                     style={{ backgroundColor: color }}
                   ></div>
                   <p>{color}</p>

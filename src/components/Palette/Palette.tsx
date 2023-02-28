@@ -12,13 +12,13 @@ function Palette({ color }: Props) {
   const { clipboard } = useContext(clipboardContext)
 
   const [notification, setNotification] = useState(false)
-  const [colorCode, setColorCode] = useState(color) // this is in hexCode
-  const [originalColor, setOriginalColor] = useState(color)
+  const [colorCode, setColorCode] = useState(color) // this is in hexCode (to toggle color format)
+  const [copiedColor, setCopiedColor] = useState("") // To save to localStorage in the homepage itself and to give correct color to notification
 
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(colorCode)
-    setOriginalColor(colorCode)
+    setCopiedColor(color)
 
     // To check whether the color is repeated if not then push
     const isColorAlreadyPresent = clipboard?.find(
@@ -48,11 +48,19 @@ function Palette({ color }: Props) {
     setColorCode(color)
   }, [color])
 
+  useEffect(() => {
+    const storagePrefix = "chromatico"
+    localStorage.setItem(
+      storagePrefix + "-clipboard",
+      JSON.stringify(clipboard)
+    )
+  }, [copiedColor])
+
   return (
     <>
       {notification && (
         <Notification
-          text={`${originalColor} has been copied to clipboard`}
+          text={`${copiedColor} has been copied to clipboard`}
           setNotification={setNotification}
         />
       )}
@@ -63,7 +71,7 @@ function Palette({ color }: Props) {
           onClick={onClick}
         >
           <div
-            className="color-code right-8 bottom-1/2 translate-y-1/2 md:right-0 md:-translate-y-0 md:bottom-8 md:left-1/2 md:-translate-x-1/2 text-xl md:text-3xl absolute flex justify-center py-2 cursor-pointer md:w-full"
+            className="color-code right-8 text-center bottom-1/2 translate-y-1/2 md:right-0 md:-translate-y-0 md:bottom-8 md:left-1/2 md:-translate-x-1/2 text-xl md:text-3xl absolute flex justify-center py-2 cursor-pointer md:w-full"
             onClick={changeFormat}
           >
             {colorCode}

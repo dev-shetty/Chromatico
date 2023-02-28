@@ -67,16 +67,34 @@ function Navbar({ setSave }: Props) {
                 href="https://github.com/Deveesh-Shetty/Chromatico"
                 target="_blank"
               >
-                <FaGithub className="hover:text-accent-500 cursor-pointer" />
+                <FaGithub
+                  className={`${
+                    route === "/"
+                      ? "hover:text-accent-500"
+                      : "text-primary-100 hover:text-primary-900"
+                  } cursor-pointer`}
+                />
               </a>
               <a
                 href="https://www.linkedin.com/in/deveesh-shetty-908539214"
                 target="_blank"
               >
-                <FaLinkedin className="hover:text-accent-500 cursor-pointer" />
+                <FaLinkedin
+                  className={`${
+                    route === "/"
+                      ? "hover:text-accent-500"
+                      : "text-primary-100 hover:text-primary-900"
+                  } cursor-pointer`}
+                />
               </a>
               <a href="https://twitter.com/shettydeveesh" target="_blank">
-                <FaTwitter className="hover:text-accent-500 cursor-pointer" />
+                <FaTwitter
+                  className={`${
+                    route === "/"
+                      ? "hover:text-accent-500"
+                      : "text-primary-100 hover:text-primary-900"
+                  } cursor-pointer`}
+                />
               </a>
             </div>
             <Link

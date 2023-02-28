@@ -2,9 +2,9 @@
 
 - [ ] Don't allow Copying of Duplicate Palette
 
-- [ ] Remove the bug that the color is only stored when we switch to Clipboard Page (Maybe add backend?)
-
 - [ ] Not to re-generate palette when switching pages
+
+- [x] Remove the bug that the color is only stored when we switch to Clipboard Page
 
 - [x] User can toggle history by pressing arrow keys / buttons
 
