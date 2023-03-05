@@ -56,3 +56,9 @@ export function convertHexToHSL(hexCode: Hex): HSL {
     Math.round(luminosity * 100),
   ]
 }
+
+export function getComplementary(hexCode: Hex): string {
+  const [hue, saturation, luminosity] = convertHexToHSL(hexCode)
+  const hueInverse = (hue + 180) % 360
+  return `hsl(${hueInverse}, ${saturation}%, ${luminosity}%)`
+}

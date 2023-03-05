@@ -3,6 +3,7 @@ import Notification from "../UIComponents/Modals/Notification"
 import { copyToClipboard } from "../../lib/clipboard"
 import { clipboardContext } from "../../context/ClipboardProvider"
 import { convertHexToRGB, convertHexToHSL } from "../../lib/math"
+import { complementContext } from "../../context/ComplementProvider"
 
 interface Props {
   color: string
@@ -10,6 +11,7 @@ interface Props {
 
 function Palette({ color }: Props) {
   const { clipboard } = useContext(clipboardContext)
+  const { isComplementColor } = useContext(complementContext)
 
   const [notification, setNotification] = useState(false)
   const [colorCode, setColorCode] = useState(color) // this is in hexCode (to toggle color format)
@@ -18,7 +20,9 @@ function Palette({ color }: Props) {
   function onClick() {
     const NOTIFICATION_TIMER = 3000
     copyToClipboard(colorCode)
-    setCopiedColor(color)
+    setCopiedColor(colorCode)
+
+    console.log(colorCode)
 
     // To check whether the color is repeated if not then push
     const isColorAlreadyPresent = clipboard?.find(
@@ -33,6 +37,7 @@ function Palette({ color }: Props) {
   }
 
   function changeFormat() {
+    if (isComplementColor) return
     if (colorCode.startsWith("#")) {
       const [red, green, blue] = convertHexToRGB(color)
       setColorCode(`rgb(${red}, ${green}, ${blue})`)
@@ -67,7 +72,9 @@ function Palette({ color }: Props) {
       <div className="relative h-full flex flex-col lg:basis-1/5 bg-white transition-all">
         <div
           className="color w-full h-full lg:h-full cursor-pointer"
-          style={{ backgroundColor: color }}
+          style={{
+            backgroundColor: color,
+          }}
           onClick={onClick}
         >
           <div
