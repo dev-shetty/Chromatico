@@ -1,14 +1,16 @@
+import { Hex, HSL, RGB } from "./types"
+
 export function randomNumber(range: number): number {
   return Math.floor(Math.random() * range)
 }
 
-export function convertToHex(value: number): string {
+export function convertToHex(value: number): Hex {
   let hexCode = value.toString(16).toUpperCase()
   if (hexCode.length === 1) hexCode = `0${hexCode}`
   return hexCode
 }
 
-export function convertHexToRGB(hexCode: string): number[] {
+export function convertHexToRGB(hexCode: Hex): RGB {
   // substring(start, end + 1) since, end is not included so + 1
   let red = parseInt(hexCode.substring(1, 3), 16) // first 2 letters excluding '#'
   let green = parseInt(hexCode.substring(3, 5), 16)
@@ -16,7 +18,7 @@ export function convertHexToRGB(hexCode: string): number[] {
   return [red, green, blue]
 }
 
-export function convertHexToHSL(hexCode: string): number[] {
+export function convertHexToHSL(hexCode: Hex): HSL {
   const [red, green, blue] = convertHexToRGB(hexCode)
 
   const r = red / 255

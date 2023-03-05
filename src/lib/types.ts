@@ -12,3 +12,15 @@ enum Navigation {
 }
 
 export type NavigationOption = Navigation
+
+export type Hex = string
+
+type red = number
+type green = number
+type blue = number
+export type RGB = [red, blue, green]
+
+type hue = number
+type saturation = number
+type luminosity = number
+export type HSL = [hue, saturation, luminosity]
