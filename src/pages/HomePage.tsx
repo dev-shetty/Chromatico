@@ -127,8 +127,8 @@ function HomePage({ copyPalette, setCopyPalette }: Props) {
   }, [offset, modal])
 
   return (
-    <div className="h-[90%] w-full">
-      <main className="h-full flex flex-col">
+    <div className="home-page h-[90%] w-full">
+      <main className="palette h-full flex flex-col">
         <ColorPalette />
         <Footer
           onGenerate={generateRandomColors}

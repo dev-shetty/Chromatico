@@ -7,10 +7,22 @@
   src: url("/fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf");
 }
 
+:root {
+  --primary-100: #ffffff;
+  --primary-900: #000000;
+  --accent-300: #ffd35c;
+  --accent-500: #ffbe0b;
+  --secondary: #fb5607;
+}
+
 html,
 body,
 #root {
   @apply h-full;
+}
+
+.home-page {
+  overflow: hidden;
 }
 
 .primary-gradient {
