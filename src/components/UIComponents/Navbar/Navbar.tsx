@@ -9,16 +9,19 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { AiOutlineHeart } from "react-icons/ai"
 import { complementContext } from "../../../context/ComplementProvider"
 import { navbarSteps } from "../../../lib/steps"
+import { storagePrefix } from "../../../lib/types"
 
 type Props = {
   setCopyPalette: Dispatch<React.SetStateAction<boolean>>
 }
+type TutorialStatus = "completed" | "pending"
 
 function Navbar({ setCopyPalette }: Props) {
   const { screenWidth } = useScreenResize()
 
   const [steps] = useState(navbarSteps)
-  const [run, setRun] = useState(true)
+  const [tutorialStatus, setTutorialStatus] =
+    useState<TutorialStatus>("pending")
 
   const location = useLocation()
   const [route, setRoute] = useState(location.pathname)
@@ -31,9 +34,25 @@ function Navbar({ setCopyPalette }: Props) {
     else setRoute("/")
   }
 
+  function handleJoyRide(data: any) {
+    const { action } = data
+    if (action === "reset") {
+      localStorage.setItem(storagePrefix + "tutorial-status", "completed")
+    }
+  }
+
   useEffect(() => {
     setRoute(location.pathname)
   }, [location])
+
+  useEffect(() => {
+    const checkTutorialStatus = localStorage.getItem(
+      storagePrefix + "tutorial-status"
+    )
+    if (checkTutorialStatus === "completed") {
+      setTutorialStatus(checkTutorialStatus)
+    }
+  }, [])
 
   return (
     <>
@@ -41,9 +60,10 @@ function Navbar({ setCopyPalette }: Props) {
         <Joyride
           steps={steps}
           continuous
-          run={run}
+          run={tutorialStatus === "pending" ? true : false}
           showSkipButton
           locale={{ last: "Finish" }}
+          callback={handleJoyRide}
           styles={{
             options: {
               primaryColor: "var(--secondary)",

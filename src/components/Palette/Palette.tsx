@@ -22,8 +22,6 @@ function Palette({ color }: Props) {
     copyToClipboard(colorCode)
     setCopiedColor(colorCode)
 
-    console.log(colorCode)
-
     // To check whether the color is repeated if not then push
     const isColorAlreadyPresent = clipboard?.find(
       (existingColor) => existingColor === color

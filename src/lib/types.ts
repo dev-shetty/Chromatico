@@ -1,3 +1,5 @@
+export const storagePrefix: string = "chromatico-"
+
 export type KeyboardEvent = {
   key: string
 }

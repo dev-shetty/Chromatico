@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react"
-import { ChildrenProp } from "../lib/types"
+import { ChildrenProp, storagePrefix } from "../lib/types"
 
 type ClipboardProps = {
   clipboard: string[]
@@ -16,8 +16,8 @@ type Palette = [
   }
 ]
 
-const savedColors = localStorage.getItem("chromatico-clipboard")
-const savedPalettes = localStorage.getItem("chromatico-palette")
+const savedColors = localStorage.getItem(storagePrefix + "clipboard")
+const savedPalettes = localStorage.getItem(storagePrefix + "palette")
 
 export const clipboardContext = createContext<Partial<ClipboardProps>>({})
 
