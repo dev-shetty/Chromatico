@@ -26,3 +26,10 @@ type hue = number
 type saturation = number
 type luminosity = number
 export type HSL = [hue, saturation, luminosity]
+
+export type TutorialStatus = "completed" | "pending"
+
+export type Data = {
+  action: string
+  status: string
+}

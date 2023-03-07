@@ -5,6 +5,7 @@ import ClipboardProvider from "./context/ClipboardProvider"
 import HistoryProvider from "./context/HistoryProvider"
 import ComplementProvider from "./context/ComplementProvider"
 import App from "./App"
+import TutorialProvider from "./context/TutorialProvider"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <HistoryProvider>
         <ClipboardProvider>
           <ComplementProvider>
-            <App />
+            <TutorialProvider>
+              <App />
+            </TutorialProvider>
           </ComplementProvider>
         </ClipboardProvider>
       </HistoryProvider>

@@ -9,19 +9,18 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { AiOutlineHeart } from "react-icons/ai"
 import { complementContext } from "../../../context/ComplementProvider"
 import { navbarSteps } from "../../../lib/steps"
-import { storagePrefix } from "../../../lib/types"
+import { storagePrefix, Data } from "../../../lib/types"
+import { tutorialContext } from "../../../context/TutorialProvider"
 
 type Props = {
   setCopyPalette: Dispatch<React.SetStateAction<boolean>>
 }
-type TutorialStatus = "completed" | "pending"
 
 function Navbar({ setCopyPalette }: Props) {
   const { screenWidth } = useScreenResize()
 
   const [steps] = useState(navbarSteps)
-  const [tutorialStatus, setTutorialStatus] =
-    useState<TutorialStatus>("pending")
+  const { tutorialStatus, setTutorialStatus } = useContext(tutorialContext)
 
   const location = useLocation()
   const [route, setRoute] = useState(location.pathname)
@@ -34,10 +33,15 @@ function Navbar({ setCopyPalette }: Props) {
     else setRoute("/")
   }
 
-  function handleJoyRide(data: any) {
-    const { action } = data
+  function handleJoyRide(data: Data) {
+    const { action, status } = data
+    if (status === "running") {
+      document.body.style.position = "fixed"
+    } else {
+    }
     if (action === "reset") {
       localStorage.setItem(storagePrefix + "tutorial-status", "completed")
+      document.body.style.position = "relative"
     }
   }
 
@@ -50,7 +54,7 @@ function Navbar({ setCopyPalette }: Props) {
       storagePrefix + "tutorial-status"
     )
     if (checkTutorialStatus === "completed") {
-      setTutorialStatus(checkTutorialStatus)
+      setTutorialStatus?.(checkTutorialStatus)
     }
   }, [route])
 
