@@ -52,7 +52,7 @@ function Navbar({ setCopyPalette }: Props) {
     if (checkTutorialStatus === "completed") {
       setTutorialStatus(checkTutorialStatus)
     }
-  }, [])
+  }, [route])
 
   return (
     <>
@@ -60,7 +60,7 @@ function Navbar({ setCopyPalette }: Props) {
         <Joyride
           steps={steps}
           continuous
-          run={tutorialStatus === "pending" ? true : false}
+          run={tutorialStatus === "pending"}
           showSkipButton
           locale={{ last: "Finish" }}
           callback={handleJoyRide}
