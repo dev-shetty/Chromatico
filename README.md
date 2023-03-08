@@ -4,11 +4,17 @@ Chromatico is a powerful and intuitive color generator designed to streamline th
 
 - With features like Copy Color, Copy Clipboard, and Save History, Chromatico makes it easy to generate, copy, and save colors quickly and efficiently.
 
+- New Feature: Complement the Palette to get a different palette of color to match with the original one, and a tutorial when you use the website for the first time guiding through all the important features.
+
 - Chromatico is constantly evolving, with new features and improvements being added all the time. Whether you are a professional designer or just someone who enjoys working with colors, Chromatico is the perfect tool to help you work more efficiently and effectively.
 
 - And it can be better by your valuable contribution
 
 ## Access the website here - [Chromatico](https://chromatico.vercel.app/)
+
+<br>
+
+<img src="./public/ChromaticoHome.png" alt="Chromatico Website">
 
 <br>
 
@@ -21,13 +27,15 @@ This project is built using
 - React Context API
 - LocalStorage
 - Framer Motion
+- React Joyride
+- React Icons
 - Hosted Using Vercel
 - And a bunch of Colors
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+    ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
@@ -76,7 +84,7 @@ To add Global CSS
 
 ```
 |-- src
-     |-- App.tsx
+     |-- App.css
 ```
 
 <br>
